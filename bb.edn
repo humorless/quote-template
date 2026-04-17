@@ -1,0 +1,9 @@
+{:paths ["src"]
+ :tasks
+ {:test {:doc "Run all tests"
+         :extra-paths ["test"]
+         :task (do
+                 (require '[clojure.test :as t])
+                 (require 'parser-test 'calculator-test 'renderer-test)
+                 (let [{:keys [fail error]} (t/run-all-tests)]
+                   (System/exit (if (pos? (+ fail error)) 1 0))))}}}
