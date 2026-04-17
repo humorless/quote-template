@@ -1,7 +1,5 @@
-quotes/
 output/
 .nrepl-port
 .DS_Store
 docs
-assets
 seller.md
