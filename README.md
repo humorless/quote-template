@@ -2,9 +2,61 @@
 
 用 Babashka 從 Markdown 輸入檔產生 HTML 報價單。生成的 HTML 為單一自含檔案（圖片以 Base64 內嵌），可直接用瀏覽器開啟或列印成 PDF。
 
+## 為什麼做這個？
+
+對一人 consulting 公司來說，客戶常常會要求先出一份報價單，而且格式要夠正式：含稅價、未稅價、匯款帳號、公司大章小章，一樣都不能少。
+
+現有的 open source invoice 產生器大多針對歐美使用情境設計，不符合台灣的報價習慣；而用 Excel 硬做又難以版本控制、容易排版走位。這個工具的目的，就是讓報價單的來源是一份乾淨的 Markdown 文字檔，產出是一份可直接列印的 HTML。
+
+![報價單範例](images/screenshot.png)
+
 ## 需求
 
 - [Babashka](https://babashka.org/) v1.12+
+
+## 什麼是 Babashka？
+
+[Babashka](https://babashka.org/) 是一個以 GraalVM 原生編譯的 Clojure 執行環境，專為腳本和命令列工具設計。它啟動速度極快（毫秒級），不需要 JVM，卻能執行大部分 Clojure 語法，非常適合用來取代 Bash 腳本。
+
+## 安裝 Babashka
+
+### macOS（使用 Homebrew）
+
+```bash
+brew install borkdude/brew/babashka
+```
+
+### Linux
+
+```bash
+# 使用官方安裝腳本（安裝最新版本）
+curl -sLO https://raw.githubusercontent.com/babashka/babashka/master/install
+chmod +x install
+./install
+```
+
+或透過套件管理器（Debian/Ubuntu）：
+
+```bash
+curl -s https://packagecloud.io/install/repositories/borkdude/babashka/script.deb.sh | sudo bash
+sudo apt-get install babashka
+```
+
+### Windows（使用 Scoop）
+
+```powershell
+scoop bucket add scoop-clojure https://github.com/littleli/scoop-clojure
+scoop install babashka
+```
+
+### 驗證安裝
+
+```bash
+bb --version
+# 輸出應類似：babashka v1.x.x
+```
+
+更多安裝方式請參考 [Babashka 官方文件](https://github.com/babashka/babashka#installation)。
 
 ## 使用方式
 
@@ -19,7 +71,7 @@ cp seller.example.md seller.md
 
 ### 1. 建立報價單輸入檔
 
-在 `quotes/` 目錄下建立一個 `.md` 檔（可參考 `quotes/example.md`）：
+在 `quotes/` 目錄下建立一個 `.md` 檔 (example.md)：
 
 ```markdown
 ---
@@ -42,10 +94,10 @@ tax_rate: 0.05               # 可省略，預設為 0.05（5%）
 ### 2. 產生報價單
 
 ```bash
-bb quote.bb quotes/你的檔案.md
+bb quote.bb quotes/example.md
 ```
 
-輸出：`output/你的檔案.html`
+輸出：`output/example.html`
 
 ### 3. 轉成 PDF（選用）
 

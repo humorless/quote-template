@@ -1,5 +1,5 @@
-quotes/example.md
-output/example.html
+quotes/
+output/
 .nrepl-port
 .DS_Store
 docs
