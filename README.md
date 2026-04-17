@@ -165,6 +165,12 @@ quotes/               ← 報價單輸入檔（.md）放這裡
 output/               ← 產生的 HTML 放這裡
 ```
 
+## 為什麼用 Babashka 而不是 Node.js？
+
+**向後相容性。** Node.js 生態系更新速度快，但 breaking changes 也多——`node_modules` 隨時間腐爛，npm 套件在幾年後往往無法安裝。Babashka 是單一靜態執行檔，沒有套件管理地獄，今天能跑的腳本五年後還是能跑。
+
+**AI 讓語言門檻消失。** 過去選 Node.js 是因為 JavaScript 開發者多、容易找人維護。但現在有 AI 輔助開發，Clojure 語法對 AI 來說和 JavaScript 一樣熟悉。任何人只要能用 AI，就能讀懂、修改、擴充這份程式碼——語言選擇的維護成本已大幅降低。
+
 ## License
 
 This is free and unencumbered software released into the public domain. See [UNLICENSE](UNLICENSE) for details.
